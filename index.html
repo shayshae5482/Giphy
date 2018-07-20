@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Get Giphy With It</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    
+    <style type="text/css">
+        button,
+        div,
+        form,
+        input {
+            margin: 20px;
+        
+        }
+        
+
+    </style>
+</head>
+
+<body>
+
+        <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">Get GIPHY With It</h1>
+                  <p class="lead">Type in a popular dance move and watch your images come to life.</p>
+                </div>
+              </div>
+
+    <div class="container">
+
+        <!-- Dance Moves will Go Here -->
+        <div id="dance-view"></div>
+
+        <!-- Rendered Buttons will get Dumped Here  -->
+        <div id="buttons-view"></div>
+
+        <form id="dance-form">
+            <label for="dance-input">Add a Dance Move</label>
+            <input type="text" id="dance-input">
+            <br>
+
+            <!-- Button triggers new dances to be added -->
+            <div class="input-group mb-3">
+                
+                <input id="add-dance" class="input-group-prepend" type="submit" value="Submit">
+            </div>
+        </form>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            // Array of dance moves 
+            var danceMoves = ["Touchdown Dance","Moonwalk", "Running Man", "Cabbage Patch", "The Carlton"];
+
+            //function to re-renders the HTML to display the appropriate content
+            function displayDanceInfo() {
+
+                var danceMoves = $(this).attr("data-name");
+                var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + danceMoves + "&api_key=xFwLJee2rfnUnp9f3A5h9rKfVF6m795f&limit=10";
+
+                
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(queryURL);
+
+                    console.log(response);
+
+                    var results = response.data;
+                    $("#dance-view").empty();
+                    
+                for (var i = 0; i < danceMoves.length; i++){
+                    danceMoves[i] = danceMoves[i].trim();
+                
+                    // Creating a div to hold the dances
+                    var danceDiv = $("<div class='dance'>");
+
+
+                    // Retrieving the URL for the image
+                    var imgURL = response.data[i].images.original.url;
+
+                    // Creating an element to hold the image
+                    var danceImage = $("<img>").attr("src", imgURL);
+
+                    // Appending the image
+                    danceDiv.append(danceImage);
+
+                    // Putting dance moves above the previous dance moves
+                    $("#dance-view").prepend(danceDiv);
+                }
+                });
+
+            }
+
+            // Function for displaying  data
+            function renderButtons() {
+
+                // Deleting the dances prior to adding new ones
+                $("#dance-view").empty();
+
+                // Looping through the array of dances
+
+                var i;
+                for (i = 0; i < danceMoves.length; i++) {
+
+                    
+                    var a = $("<button>");
+    
+                    a.addClass("dance-btn");
+                    
+                    a.attr("data-name", danceMoves[i]);
+                  
+                    a.text(danceMoves[i]);
+                  
+                    $("#buttons-view").append(a);
+                }
+            }
+
+           
+            $("#add-dance").on("click", function (event) {
+                event.preventDefault();
+               
+                var jams = $("#dance-input").val().trim();
+
+                // Adding dances from the textbox to our array
+                danceMoves.push(jams);
+
+               
+                renderButtons();
+            });
+
+            // Adding a click event listener to all elements with a class of "dance-btn"
+            $(document).on("click", ".dance-btn", displayDanceInfo);
+
+           //display the buttons
+            renderButtons();
+        </script>
+    </div>
+</body>
+
+</html>
