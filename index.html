@@ -7,17 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
         crossorigin="anonymous">
     
-    <style type="text/css">
-        button,
-        div,
-        form,
-        input {
-            margin: 20px;
-        
-        }
-        
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="assets/style/style.css">
 </head>
 
 <body>
@@ -52,7 +42,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
             // Array of dance moves 
-            var danceMoves = ["Touchdown Dance","Moonwalk", "Running Man", "Cabbage Patch", "The Carlton"];
+            var danceMoves = ["Touchdown Dance","Moonwalk", "Running Man", "Cabbage Patch", "The Carlton", "Jiggy"];
 
             //function to re-renders the HTML to display the appropriate content
             function displayDanceInfo() {
@@ -117,7 +107,7 @@
                   
                     $("#buttons-view").append(a);
                 }
-            }
+            };
 
            
             $("#add-dance").on("click", function (event) {
@@ -135,10 +125,13 @@
             // Adding a click event listener to all elements with a class of "dance-btn"
             $(document).on("click", ".dance-btn", displayDanceInfo);
 
+
            //display the buttons
             renderButtons();
         </script>
     </div>
+
+    
 </body>
 
 </html>
