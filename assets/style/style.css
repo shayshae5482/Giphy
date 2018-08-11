@@ -3,6 +3,7 @@
         form,
         input {
             margin: 20px;
+            border-color: orange;
         
         }
 
@@ -10,5 +11,24 @@
 
             background: url("https://cdn.pixabay.com/photo/2013/07/12/18/17/equalizer-153212_960_720.png");
             background-repeat: round;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         
+        }
+
+        #add-dance {
+            background: orange;
+            color: white;
+        }
+
+        button {
+
+            background: orange;
+            color: white;
+        }
+
+        #jheader {
+            color: white;
+            background-color: black;
+            text-align: center;
         }
