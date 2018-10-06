@@ -8,9 +8,9 @@ Create a website that utilizes GIPHY API. In this project I wanted to create a w
 ![](https://github.com/shayshae5482/Giphy/blob/master/assets/images/running-man-giphy.PNG)|
 
 # Programming Languages Used:
-* HTML5,
+* HTML5
 * Bootstrap
-** CSS,
+* CSS
 * Javascript
 * JQuery
 * AJAX
