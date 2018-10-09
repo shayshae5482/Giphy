@@ -1,4 +1,4 @@
-# Giphy
+# Git Giphy With It!
 
 ![](https://github.com/shayshae5482/Giphy/blob/master/assets/images/giphy-readme.PNG)
 
